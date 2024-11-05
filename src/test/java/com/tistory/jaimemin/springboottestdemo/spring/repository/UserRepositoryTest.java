@@ -14,13 +14,13 @@ import com.tistory.jaimemin.springboottestdemo.spring.model.UserStatus;
 
 @DataJpaTest(showSql = true)
 @ExtendWith(SpringExtension.class)
-@TestPropertySource("classpath:test-application.yml")
+@TestPropertySource("classpath:test-application.properties")
 @Sql("/sql/user-repository-test-data.sql")
 class UserRepositoryTest {
 
 	@Autowired
 	private UserRepository userRepository;
-	
+
 	@Test
 	void findByIdAndStatus_로_유저_데이터를_찾아올_수_있다() {
 		// given

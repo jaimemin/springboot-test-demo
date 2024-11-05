@@ -1,6 +1,11 @@
 delete
 from `posts`
-WHERE 1 = 1;
+where 1;
 delete
 from `users`
-WHERE 1 = 1;
+where 1;
+
+ALTER TABLE `users`
+    ALTER COLUMN id RESTART WITH 1;
+ALTER TABLE `posts`
+    ALTER COLUMN id RESTART WITH 1;
