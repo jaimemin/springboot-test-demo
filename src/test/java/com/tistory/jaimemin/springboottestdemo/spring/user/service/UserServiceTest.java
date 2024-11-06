@@ -1,4 +1,4 @@
-package com.tistory.jaimemin.springboottestdemo.spring.service;
+package com.tistory.jaimemin.springboottestdemo.spring.user.service;
 
 import static org.assertj.core.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.*;
@@ -20,7 +20,6 @@ import com.tistory.jaimemin.springboottestdemo.spring.user.domain.UserCreate;
 import com.tistory.jaimemin.springboottestdemo.spring.user.domain.UserStatus;
 import com.tistory.jaimemin.springboottestdemo.spring.user.domain.UserUpdate;
 import com.tistory.jaimemin.springboottestdemo.spring.user.infrastructure.UserEntity;
-import com.tistory.jaimemin.springboottestdemo.spring.user.service.UserService;
 
 @SpringBootTest
 @TestPropertySource("classpath:test-application.properties")

@@ -1,4 +1,4 @@
-package com.tistory.jaimemin.springboottestdemo.spring.controller;
+package com.tistory.jaimemin.springboottestdemo.spring.user.controller;
 
 import static org.mockito.ArgumentMatchers.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;

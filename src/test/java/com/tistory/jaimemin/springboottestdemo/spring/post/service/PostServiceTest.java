@@ -1,4 +1,4 @@
-package com.tistory.jaimemin.springboottestdemo.spring.service;
+package com.tistory.jaimemin.springboottestdemo.spring.post.service;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -12,7 +12,6 @@ import org.springframework.test.context.jdbc.SqlGroup;
 import com.tistory.jaimemin.springboottestdemo.spring.post.domain.PostCreate;
 import com.tistory.jaimemin.springboottestdemo.spring.post.domain.PostUpdate;
 import com.tistory.jaimemin.springboottestdemo.spring.post.infrastructure.PostEntity;
-import com.tistory.jaimemin.springboottestdemo.spring.post.service.PostService;
 
 @SpringBootTest
 @TestPropertySource("classpath:test-application.properties")

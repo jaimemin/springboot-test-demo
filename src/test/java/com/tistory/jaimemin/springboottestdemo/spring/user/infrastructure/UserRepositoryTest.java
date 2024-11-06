@@ -1,4 +1,4 @@
-package com.tistory.jaimemin.springboottestdemo.spring.repository;
+package com.tistory.jaimemin.springboottestdemo.spring.user.infrastructure;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -11,8 +11,6 @@ import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import com.tistory.jaimemin.springboottestdemo.spring.user.domain.UserStatus;
-import com.tistory.jaimemin.springboottestdemo.spring.user.infrastructure.UserEntity;
-import com.tistory.jaimemin.springboottestdemo.spring.user.infrastructure.UserRepository;
 
 @DataJpaTest(showSql = true)
 @ExtendWith(SpringExtension.class)
