@@ -15,10 +15,10 @@ import org.springframework.test.context.jdbc.SqlGroup;
 import org.springframework.test.web.servlet.MockMvc;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.tistory.jaimemin.springboottestdemo.spring.model.UserStatus;
-import com.tistory.jaimemin.springboottestdemo.spring.model.dto.UserUpdateDto;
-import com.tistory.jaimemin.springboottestdemo.spring.repository.UserEntity;
-import com.tistory.jaimemin.springboottestdemo.spring.repository.UserRepository;
+import com.tistory.jaimemin.springboottestdemo.spring.user.domain.UserStatus;
+import com.tistory.jaimemin.springboottestdemo.spring.user.domain.UserUpdate;
+import com.tistory.jaimemin.springboottestdemo.spring.user.infrastructure.UserEntity;
+import com.tistory.jaimemin.springboottestdemo.spring.user.infrastructure.UserRepository;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -101,7 +101,7 @@ class UserControllerTest {
 	@Test
 	void 사용자는_내_정보를_수정할_수_있다() throws Exception {
 		// given
-		UserUpdateDto userUpdateDto = UserUpdateDto.builder()
+		UserUpdate userUpdate = UserUpdate.builder()
 			.nickname("aaa222")
 			.address("Panama")
 			.build();
@@ -112,7 +112,7 @@ class UserControllerTest {
 				put("/api/users/me")
 					.header("EMAIL", "aaa@gmail.com")
 					.contentType(MediaType.APPLICATION_JSON)
-					.content(objectMapper.writeValueAsString(userUpdateDto))
+					.content(objectMapper.writeValueAsString(userUpdate))
 			)
 			.andExpect(status().isOk())
 			.andExpect(jsonPath("$.id").value(1))

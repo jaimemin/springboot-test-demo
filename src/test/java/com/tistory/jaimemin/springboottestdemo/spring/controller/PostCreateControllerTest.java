@@ -14,7 +14,7 @@ import org.springframework.test.context.jdbc.SqlGroup;
 import org.springframework.test.web.servlet.MockMvc;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.tistory.jaimemin.springboottestdemo.spring.model.dto.PostCreateDto;
+import com.tistory.jaimemin.springboottestdemo.spring.post.domain.PostCreate;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -33,7 +33,7 @@ class PostCreateControllerTest {
 	@Test
 	void 사용자는_게시물을_작성할_수_있다() throws Exception {
 		// given
-		PostCreateDto postCreateDto = PostCreateDto.builder()
+		PostCreate postCreate = PostCreate.builder()
 			.writerId(1L)
 			.content("hello world")
 			.build();
@@ -43,7 +43,7 @@ class PostCreateControllerTest {
 		mockMvc.perform(
 				post("/api/posts")
 					.contentType(MediaType.APPLICATION_JSON)
-					.content(objectMapper.writeValueAsString(postCreateDto))
+					.content(objectMapper.writeValueAsString(postCreate))
 			)
 			.andExpect(status().isCreated())
 			.andExpect(jsonPath("$.id").isNumber())

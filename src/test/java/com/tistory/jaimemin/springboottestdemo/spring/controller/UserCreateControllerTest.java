@@ -19,7 +19,7 @@ import org.springframework.test.context.jdbc.SqlGroup;
 import org.springframework.test.web.servlet.MockMvc;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.tistory.jaimemin.springboottestdemo.spring.model.dto.UserCreateDto;
+import com.tistory.jaimemin.springboottestdemo.spring.user.domain.UserCreate;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -40,7 +40,7 @@ class UserCreateControllerTest {
 	@Test
 	void 사용자는_회원_가입을_할_수있고_회원가입된_사용자는_PENDING_상태이다() throws Exception {
 		// given
-		UserCreateDto userCreateDto = UserCreateDto.builder()
+		UserCreate userCreate = UserCreate.builder()
 			.email("ccc@gmail.com")
 			.nickname("ccc")
 			.address("Pangyo")
@@ -52,7 +52,7 @@ class UserCreateControllerTest {
 		mockMvc.perform(
 				post("/api/users")
 					.contentType(MediaType.APPLICATION_JSON)
-					.content(objectMapper.writeValueAsString(userCreateDto))
+					.content(objectMapper.writeValueAsString(userCreate))
 			)
 			.andExpect(status().isCreated())
 			.andExpect(jsonPath("$.id").isNumber())

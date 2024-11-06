@@ -14,12 +14,13 @@ import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.jdbc.SqlGroup;
 
-import com.tistory.jaimemin.springboottestdemo.spring.exception.CertificationCodeNotMatchedException;
-import com.tistory.jaimemin.springboottestdemo.spring.exception.ResourceNotFoundException;
-import com.tistory.jaimemin.springboottestdemo.spring.model.UserStatus;
-import com.tistory.jaimemin.springboottestdemo.spring.model.dto.UserCreateDto;
-import com.tistory.jaimemin.springboottestdemo.spring.model.dto.UserUpdateDto;
-import com.tistory.jaimemin.springboottestdemo.spring.repository.UserEntity;
+import com.tistory.jaimemin.springboottestdemo.spring.common.domain.exception.CertificationCodeNotMatchedException;
+import com.tistory.jaimemin.springboottestdemo.spring.common.domain.exception.ResourceNotFoundException;
+import com.tistory.jaimemin.springboottestdemo.spring.user.domain.UserCreate;
+import com.tistory.jaimemin.springboottestdemo.spring.user.domain.UserStatus;
+import com.tistory.jaimemin.springboottestdemo.spring.user.domain.UserUpdate;
+import com.tistory.jaimemin.springboottestdemo.spring.user.infrastructure.UserEntity;
+import com.tistory.jaimemin.springboottestdemo.spring.user.service.UserService;
 
 @SpringBootTest
 @TestPropertySource("classpath:test-application.properties")
@@ -82,7 +83,7 @@ class UserServiceTest {
 	@Test
 	void userCreateDto_를_이용해_유저를_생성할_수_있다() {
 		// given
-		UserCreateDto userCreateDto = UserCreateDto.builder()
+		UserCreate userCreate = UserCreate.builder()
 			.email("bbb@gmail.com")
 			.address("Gyeongi")
 			.nickname("bbb")
@@ -90,7 +91,7 @@ class UserServiceTest {
 		BDDMockito.doNothing().when(mailSender).send(any(SimpleMailMessage.class));
 
 		// when
-		UserEntity result = userService.create(userCreateDto);
+		UserEntity result = userService.create(userCreate);
 
 		// then
 		assertThat(result.getId()).isNotNull();
@@ -100,13 +101,13 @@ class UserServiceTest {
 	@Test
 	void userUpdateDto_를_이용하여_유저를_수정할_수_있다() {
 		// given
-		UserUpdateDto userUpdateDto = UserUpdateDto.builder()
+		UserUpdate userUpdate = UserUpdate.builder()
 			.address("Incheon")
 			.nickname("á22a2a2a")
 			.build();
 
 		// when
-		userService.update(1, userUpdateDto);
+		userService.update(1, userUpdate);
 
 		// then
 		UserEntity userEntity = userService.getById(1);

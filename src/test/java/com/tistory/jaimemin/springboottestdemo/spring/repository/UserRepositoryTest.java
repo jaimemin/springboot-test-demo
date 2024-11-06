@@ -10,7 +10,9 @@ import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import com.tistory.jaimemin.springboottestdemo.spring.model.UserStatus;
+import com.tistory.jaimemin.springboottestdemo.spring.user.domain.UserStatus;
+import com.tistory.jaimemin.springboottestdemo.spring.user.infrastructure.UserEntity;
+import com.tistory.jaimemin.springboottestdemo.spring.user.infrastructure.UserRepository;
 
 @DataJpaTest(showSql = true)
 @ExtendWith(SpringExtension.class)
