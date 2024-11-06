@@ -16,16 +16,16 @@ import com.tistory.jaimemin.springboottestdemo.spring.user.domain.UserStatus;
 @ExtendWith(SpringExtension.class)
 @TestPropertySource("classpath:test-application.properties")
 @Sql("/sql/user-repository-test-data.sql")
-class UserRepositoryTest {
+class UserJpaRepositoryTest {
 
 	@Autowired
-	private UserRepository userRepository;
+	private UserJpaRepository userJpaRepository;
 
 	@Test
 	void findByIdAndStatus_로_유저_데이터를_찾아올_수_있다() {
 		// given
 		// when
-		UserEntity result = userRepository.findByIdAndStatus(1, UserStatus.ACTIVE).orElse(null);
+		UserEntity result = userJpaRepository.findByIdAndStatus(1, UserStatus.ACTIVE).orElse(null);
 
 		// then
 		assertThat(result).isNotNull();
@@ -35,7 +35,7 @@ class UserRepositoryTest {
 	void findByIdAndStatus_는_데이터가_없으면_Optional_Empty_를_내려준다() {
 		// given
 		// when
-		UserEntity result = userRepository.findByIdAndStatus(1, UserStatus.PENDING).orElse(null);
+		UserEntity result = userJpaRepository.findByIdAndStatus(1, UserStatus.PENDING).orElse(null);
 
 		// then
 		assertThat(result).isNull();
@@ -45,7 +45,7 @@ class UserRepositoryTest {
 	void findByEmailAndStatus_로_유저_데이터를_찾아올_수_있다() {
 		// given
 		// when
-		UserEntity result = userRepository.findByEmailAndStatus("aaa@gmail.com", UserStatus.ACTIVE).orElse(null);
+		UserEntity result = userJpaRepository.findByEmailAndStatus("aaa@gmail.com", UserStatus.ACTIVE).orElse(null);
 
 		// then
 		assertThat(result).isNotNull();
@@ -55,7 +55,7 @@ class UserRepositoryTest {
 	void findByEmailAndStatus_는_데이터가_없으면_Optional_Empty_를_내려준다() {
 		// given
 		// when
-		UserEntity result = userRepository.findByEmailAndStatus("aaa@gmail.com", UserStatus.PENDING).orElse(null);
+		UserEntity result = userJpaRepository.findByEmailAndStatus("aaa@gmail.com", UserStatus.PENDING).orElse(null);
 
 		// then
 		assertThat(result).isNull();

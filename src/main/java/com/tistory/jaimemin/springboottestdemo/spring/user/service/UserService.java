@@ -15,7 +15,7 @@ import com.tistory.jaimemin.springboottestdemo.spring.user.domain.UserCreate;
 import com.tistory.jaimemin.springboottestdemo.spring.user.domain.UserStatus;
 import com.tistory.jaimemin.springboottestdemo.spring.user.domain.UserUpdate;
 import com.tistory.jaimemin.springboottestdemo.spring.user.infrastructure.UserEntity;
-import com.tistory.jaimemin.springboottestdemo.spring.user.infrastructure.UserRepository;
+import com.tistory.jaimemin.springboottestdemo.spring.user.service.port.UserRepository;
 
 import lombok.RequiredArgsConstructor;
 

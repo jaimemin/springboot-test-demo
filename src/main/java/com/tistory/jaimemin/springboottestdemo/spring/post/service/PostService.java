@@ -8,7 +8,7 @@ import com.tistory.jaimemin.springboottestdemo.spring.common.domain.exception.Re
 import com.tistory.jaimemin.springboottestdemo.spring.post.domain.PostCreate;
 import com.tistory.jaimemin.springboottestdemo.spring.post.domain.PostUpdate;
 import com.tistory.jaimemin.springboottestdemo.spring.post.infrastructure.PostEntity;
-import com.tistory.jaimemin.springboottestdemo.spring.post.infrastructure.PostRepository;
+import com.tistory.jaimemin.springboottestdemo.spring.post.service.port.PostRepository;
 import com.tistory.jaimemin.springboottestdemo.spring.user.infrastructure.UserEntity;
 import com.tistory.jaimemin.springboottestdemo.spring.user.service.UserService;
 
