@@ -6,6 +6,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.tistory.jaimemin.springboottestdemo.spring.common.domain.exception.ResourceNotFoundException;
+import com.tistory.jaimemin.springboottestdemo.spring.common.service.port.ClockHolder;
+import com.tistory.jaimemin.springboottestdemo.spring.common.service.port.UuidHolder;
 import com.tistory.jaimemin.springboottestdemo.spring.user.domain.User;
 import com.tistory.jaimemin.springboottestdemo.spring.user.domain.UserCreate;
 import com.tistory.jaimemin.springboottestdemo.spring.user.domain.UserStatus;
@@ -17,6 +19,10 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 public class UserService {
+
+	private final UuidHolder uuidHolder;
+
+	private final ClockHolder clockHolder;
 
 	private final UserRepository userRepository;
 
@@ -38,7 +44,7 @@ public class UserService {
 
 	@Transactional
 	public User create(UserCreate userCreate) {
-		User user = User.from(userCreate);
+		User user = User.from(userCreate, uuidHolder);
 		user = userRepository.save(user);
 		certificationService.send(userCreate.getEmail(), user.getId(), user.getCertificationCode());
 
@@ -58,7 +64,7 @@ public class UserService {
 	public void login(long id) {
 		User user = userRepository.findById(id)
 			.orElseThrow(() -> new ResourceNotFoundException("Users", id));
-		user = user.login();
+		user = user.login(clockHolder);
 
 		userRepository.save(user);
 	}
