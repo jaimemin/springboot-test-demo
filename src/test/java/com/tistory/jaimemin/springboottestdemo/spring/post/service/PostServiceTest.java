@@ -9,9 +9,9 @@ import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.jdbc.SqlGroup;
 
+import com.tistory.jaimemin.springboottestdemo.spring.post.domain.Post;
 import com.tistory.jaimemin.springboottestdemo.spring.post.domain.PostCreate;
 import com.tistory.jaimemin.springboottestdemo.spring.post.domain.PostUpdate;
-import com.tistory.jaimemin.springboottestdemo.spring.post.infrastructure.PostEntity;
 
 @SpringBootTest
 @TestPropertySource("classpath:test-application.properties")
@@ -28,7 +28,7 @@ class PostServiceTest {
 	void getById는_존재하는_게시물을_내려준다() {
 		// given
 		// when
-		PostEntity result = postService.getById(1L);
+		Post result = postService.getById(1L);
 
 		// then
 		assertThat(result.getContent()).isEqualTo("helloworld");
@@ -44,7 +44,7 @@ class PostServiceTest {
 			.build();
 
 		// when
-		PostEntity result = postService.create(postCreate);
+		Post result = postService.create(postCreate);
 
 		// then
 		assertThat(result.getId()).isNotNull();
@@ -63,7 +63,7 @@ class PostServiceTest {
 		postService.update(1, postUpdate);
 
 		// then
-		PostEntity result = postService.getById(1L);
+		Post result = postService.getById(1L);
 		assertThat(result.getContent()).isEqualTo("hello world :)");
 		assertThat(result.getModifiedAt()).isGreaterThan(0L);
 	}

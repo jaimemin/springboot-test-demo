@@ -22,12 +22,10 @@ public class PostCreateController {
 
 	private final PostService postService;
 
-	private final PostController postController;
-
 	@PostMapping
 	public ResponseEntity<PostResponse> createPost(@RequestBody PostCreate postCreate) {
 		return ResponseEntity
 			.status(HttpStatus.CREATED)
-			.body(postController.toResponse(postService.create(postCreate)));
+			.body(PostResponse.from(postService.create(postCreate)));
 	}
 }

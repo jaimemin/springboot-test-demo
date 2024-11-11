@@ -2,11 +2,11 @@ package com.tistory.jaimemin.springboottestdemo.spring.post.service.port;
 
 import java.util.Optional;
 
-import com.tistory.jaimemin.springboottestdemo.spring.post.infrastructure.PostEntity;
+import com.tistory.jaimemin.springboottestdemo.spring.post.domain.Post;
 
 public interface PostRepository {
 
-	Optional<PostEntity> findById(long id);
+	Optional<Post> findById(long id);
 
-	PostEntity save(PostEntity postEntity);
+	Post save(Post post);
 }
