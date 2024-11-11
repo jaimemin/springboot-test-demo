@@ -1,4 +1,4 @@
-package com.tistory.jaimemin.springboottestdemo.spring.user.controller;
+package com.tistory.jaimemin.springboottestdemo.spring.medium;
 
 import static org.assertj.core.api.Assertions.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;

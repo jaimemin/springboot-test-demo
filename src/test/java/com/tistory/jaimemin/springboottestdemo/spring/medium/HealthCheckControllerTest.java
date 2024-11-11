@@ -1,4 +1,4 @@
-package com.tistory.jaimemin.springboottestdemo.spring.common.controller;
+package com.tistory.jaimemin.springboottestdemo.spring.medium;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;

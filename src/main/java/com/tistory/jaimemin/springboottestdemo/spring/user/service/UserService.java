@@ -14,9 +14,11 @@ import com.tistory.jaimemin.springboottestdemo.spring.user.domain.UserStatus;
 import com.tistory.jaimemin.springboottestdemo.spring.user.domain.UserUpdate;
 import com.tistory.jaimemin.springboottestdemo.spring.user.service.port.UserRepository;
 
+import lombok.Builder;
 import lombok.RequiredArgsConstructor;
 
 @Service
+@Builder
 @RequiredArgsConstructor
 public class UserService {
 

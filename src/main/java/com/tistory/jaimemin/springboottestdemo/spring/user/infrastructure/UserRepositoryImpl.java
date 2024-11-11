@@ -4,6 +4,7 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Repository;
 
+import com.tistory.jaimemin.springboottestdemo.spring.common.domain.exception.ResourceNotFoundException;
 import com.tistory.jaimemin.springboottestdemo.spring.user.domain.User;
 import com.tistory.jaimemin.springboottestdemo.spring.user.domain.UserStatus;
 import com.tistory.jaimemin.springboottestdemo.spring.user.service.port.UserRepository;
@@ -15,6 +16,11 @@ import lombok.RequiredArgsConstructor;
 public class UserRepositoryImpl implements UserRepository {
 
 	private final UserJpaRepository userJpaRepository;
+
+	@Override
+	public User getById(long id) {
+		return findById(id).orElseThrow(() -> new ResourceNotFoundException("Posts", id));
+	}
 
 	@Override
 	public Optional<User> findById(long id) {

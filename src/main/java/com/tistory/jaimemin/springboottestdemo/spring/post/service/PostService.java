@@ -9,17 +9,19 @@ import com.tistory.jaimemin.springboottestdemo.spring.post.domain.PostCreate;
 import com.tistory.jaimemin.springboottestdemo.spring.post.domain.PostUpdate;
 import com.tistory.jaimemin.springboottestdemo.spring.post.service.port.PostRepository;
 import com.tistory.jaimemin.springboottestdemo.spring.user.domain.User;
-import com.tistory.jaimemin.springboottestdemo.spring.user.service.UserService;
+import com.tistory.jaimemin.springboottestdemo.spring.user.service.port.UserRepository;
 
+import lombok.Builder;
 import lombok.RequiredArgsConstructor;
 
 @Service
+@Builder
 @RequiredArgsConstructor
 public class PostService {
 
-	private final UserService userService;
-
 	private final ClockHolder clockHolder;
+
+	private final UserRepository userRepository;
 
 	private final PostRepository postRepository;
 
@@ -28,7 +30,7 @@ public class PostService {
 	}
 
 	public Post create(PostCreate postCreate) {
-		User writer = userService.getById(postCreate.getWriterId());
+		User writer = userRepository.getById(postCreate.getWriterId());
 		Post post = Post.from(writer, postCreate, clockHolder);
 
 		return postRepository.save(post);

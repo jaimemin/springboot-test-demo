@@ -1,63 +1,55 @@
-package com.tistory.jaimemin.springboottestdemo.spring.user.controller;
+package com.tistory.jaimemin.springboottestdemo.spring.medium;
 
-import static org.mockito.ArgumentMatchers.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 import org.junit.jupiter.api.Test;
-import org.mockito.BDDMockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
-import org.springframework.mail.SimpleMailMessage;
-import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.jdbc.SqlGroup;
 import org.springframework.test.web.servlet.MockMvc;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.tistory.jaimemin.springboottestdemo.spring.user.domain.UserCreate;
+import com.tistory.jaimemin.springboottestdemo.spring.post.domain.PostCreate;
 
 @SpringBootTest
 @AutoConfigureMockMvc
 @AutoConfigureTestDatabase
 @SqlGroup({
+	@Sql(value = "/sql/post-create-controller-test-data.sql", executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD),
 	@Sql(value = "/sql/delete-all-data.sql", executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
 })
-class UserCreateControllerTest {
+class PostCreateControllerTest {
 
 	@Autowired
 	private MockMvc mockMvc;
 
-	@MockBean
-	private JavaMailSender mailSender;
-
 	private final ObjectMapper objectMapper = new ObjectMapper();
 
 	@Test
-	void 사용자는_회원_가입을_할_수있고_회원가입된_사용자는_PENDING_상태이다() throws Exception {
+	void 사용자는_게시물을_작성할_수_있다() throws Exception {
 		// given
-		UserCreate userCreate = UserCreate.builder()
-			.email("ccc@gmail.com")
-			.nickname("ccc")
-			.address("Pangyo")
+		PostCreate postCreate = PostCreate.builder()
+			.writerId(1L)
+			.content("hello world")
 			.build();
-		BDDMockito.doNothing().when(mailSender).send(any(SimpleMailMessage.class));
 
 		// when
 		// then
 		mockMvc.perform(
-				post("/api/users")
+				post("/api/posts")
 					.contentType(MediaType.APPLICATION_JSON)
-					.content(objectMapper.writeValueAsString(userCreate))
+					.content(objectMapper.writeValueAsString(postCreate))
 			)
 			.andExpect(status().isCreated())
 			.andExpect(jsonPath("$.id").isNumber())
-			.andExpect(jsonPath("$.email").value("ccc@gmail.com"))
-			.andExpect(jsonPath("$.nickname").value("ccc"))
-			.andExpect(jsonPath("$.status").value("PENDING"));
+			.andExpect(jsonPath("$.content").value("hello world"))
+			.andExpect(jsonPath("$.writer.id").isNumber())
+			.andExpect(jsonPath("$.writer.email").value("aaa@gmail.com"))
+			.andExpect(jsonPath("$.writer.nickname").value("aaa"));
 	}
 }

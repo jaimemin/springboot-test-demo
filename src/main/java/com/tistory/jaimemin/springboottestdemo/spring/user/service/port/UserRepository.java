@@ -7,6 +7,8 @@ import com.tistory.jaimemin.springboottestdemo.spring.user.domain.UserStatus;
 
 public interface UserRepository {
 
+	User getById(long id);
+
 	Optional<User> findById(long id);
 
 	Optional<User> findByIdAndStatus(long id, UserStatus userStatus);

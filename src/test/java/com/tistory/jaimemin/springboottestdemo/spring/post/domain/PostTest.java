@@ -39,4 +39,34 @@ public class PostTest {
 		assertThat(post.getWriter().getCertificationCode()).isEqualTo("aaaaaaaa-aaaaaaaa-aaaaaba");
 		assertThat(post.getCreatedAt()).isEqualTo(100L);
 	}
+
+	@Test
+	public void PostUpdate로_게시물을_수정할_수_있다() {
+		// given
+		PostUpdate postUpdate = PostUpdate.builder()
+			.content("foobar")
+			.build();
+		User writer = User.builder()
+			.id(1L)
+			.email("aaa@gmail.com")
+			.nickname("aaa")
+			.address("Seoul")
+			.status(UserStatus.ACTIVE)
+			.certificationCode("aaaaaaaa-aaaaaaaa-aaaaaba")
+			.build();
+		Post post = Post.builder()
+			.id(1L)
+			.content("helloworld")
+			.createdAt(1678530673958L)
+			.modifiedAt(1678530673958L)
+			.writer(writer)
+			.build();
+
+		// when
+		post = post.update(postUpdate, new TestClockHolder(100L));
+
+		// then
+		assertThat(post.getContent()).isEqualTo("foobar");
+		assertThat(post.getModifiedAt()).isEqualTo(100L);
+	}
 }
