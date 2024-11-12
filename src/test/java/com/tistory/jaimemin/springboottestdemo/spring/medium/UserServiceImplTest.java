@@ -20,7 +20,7 @@ import com.tistory.jaimemin.springboottestdemo.spring.user.domain.User;
 import com.tistory.jaimemin.springboottestdemo.spring.user.domain.UserCreate;
 import com.tistory.jaimemin.springboottestdemo.spring.user.domain.UserStatus;
 import com.tistory.jaimemin.springboottestdemo.spring.user.domain.UserUpdate;
-import com.tistory.jaimemin.springboottestdemo.spring.user.service.UserService;
+import com.tistory.jaimemin.springboottestdemo.spring.user.service.UserServiceImpl;
 
 @SpringBootTest
 @TestPropertySource("classpath:test-application.properties")
@@ -28,10 +28,10 @@ import com.tistory.jaimemin.springboottestdemo.spring.user.service.UserService;
 	@Sql(value = "/sql/user-service-test-data.sql", executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD),
 	@Sql(value = "/sql/delete-all-data.sql", executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
 })
-class UserServiceTest {
+class UserServiceImplTest {
 
 	@Autowired
-	private UserService userService;
+	private UserServiceImpl userService;
 
 	@MockBean
 	private JavaMailSender mailSender;

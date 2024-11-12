@@ -12,7 +12,7 @@ import org.springframework.test.context.jdbc.SqlGroup;
 import com.tistory.jaimemin.springboottestdemo.spring.post.domain.Post;
 import com.tistory.jaimemin.springboottestdemo.spring.post.domain.PostCreate;
 import com.tistory.jaimemin.springboottestdemo.spring.post.domain.PostUpdate;
-import com.tistory.jaimemin.springboottestdemo.spring.post.service.PostService;
+import com.tistory.jaimemin.springboottestdemo.spring.post.service.PostServiceImpl;
 
 @SpringBootTest
 @TestPropertySource("classpath:test-application.properties")
@@ -20,10 +20,10 @@ import com.tistory.jaimemin.springboottestdemo.spring.post.service.PostService;
 	@Sql(value = "/sql/post-service-test-data.sql", executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD),
 	@Sql(value = "/sql/delete-all-data.sql", executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
 })
-class PostServiceTest {
+class PostServiceImplTest {
 
 	@Autowired
-	private PostService postService;
+	private PostServiceImpl postService;
 
 	@Test
 	void getById는_존재하는_게시물을_내려준다() {

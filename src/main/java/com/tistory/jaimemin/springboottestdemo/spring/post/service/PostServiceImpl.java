@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 
 import com.tistory.jaimemin.springboottestdemo.spring.common.domain.exception.ResourceNotFoundException;
 import com.tistory.jaimemin.springboottestdemo.spring.common.service.port.ClockHolder;
+import com.tistory.jaimemin.springboottestdemo.spring.post.controller.port.PostService;
 import com.tistory.jaimemin.springboottestdemo.spring.post.domain.Post;
 import com.tistory.jaimemin.springboottestdemo.spring.post.domain.PostCreate;
 import com.tistory.jaimemin.springboottestdemo.spring.post.domain.PostUpdate;
@@ -17,7 +18,7 @@ import lombok.RequiredArgsConstructor;
 @Service
 @Builder
 @RequiredArgsConstructor
-public class PostService {
+public class PostServiceImpl implements PostService {
 
 	private final ClockHolder clockHolder;
 

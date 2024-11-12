@@ -16,16 +16,16 @@ import com.tistory.jaimemin.springboottestdemo.spring.user.domain.UserCreate;
 import com.tistory.jaimemin.springboottestdemo.spring.user.domain.UserStatus;
 import com.tistory.jaimemin.springboottestdemo.spring.user.domain.UserUpdate;
 
-class UserServiceTest {
+class UserServiceImplTest {
 
-	private UserService userService;
+	private UserServiceImpl userService;
 
 	@BeforeEach
 	void init() {
 		FakeMailSender fakeMailSender = new FakeMailSender();
 		FakeUserRepository fakeUserRepository = new FakeUserRepository();
 
-		this.userService = UserService.builder()
+		this.userService = UserServiceImpl.builder()
 			.uuidHolder(new TestUuidHolder("aaaaaaaa-aaaaaaaa-aaaaaba"))
 			.clockHolder(new TestClockHolder(1678530673958L))
 			.userRepository(fakeUserRepository)

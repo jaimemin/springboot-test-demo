@@ -14,9 +14,9 @@ import com.tistory.jaimemin.springboottestdemo.spring.post.domain.PostUpdate;
 import com.tistory.jaimemin.springboottestdemo.spring.user.domain.User;
 import com.tistory.jaimemin.springboottestdemo.spring.user.domain.UserStatus;
 
-class PostServiceTest {
+class PostServiceImplTest {
 
-	private PostService postService;
+	private PostServiceImpl postService;
 
 	@BeforeEach
 	void init() {
@@ -32,7 +32,7 @@ class PostServiceTest {
 			.lastLoginAt(0L)
 			.build();
 
-		this.postService = PostService.builder()
+		this.postService = PostServiceImpl.builder()
 			.postRepository(fakePostRepository)
 			.userRepository(fakeUserRepository)
 			.clockHolder(new TestClockHolder(1678530673958L))
