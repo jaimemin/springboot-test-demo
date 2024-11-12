@@ -8,10 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.tistory.jaimemin.springboottestdemo.spring.common.domain.exception.ResourceNotFoundException;
 import com.tistory.jaimemin.springboottestdemo.spring.common.service.port.ClockHolder;
 import com.tistory.jaimemin.springboottestdemo.spring.common.service.port.UuidHolder;
-import com.tistory.jaimemin.springboottestdemo.spring.user.controller.port.AuthenticationService;
-import com.tistory.jaimemin.springboottestdemo.spring.user.controller.port.UserCreateService;
-import com.tistory.jaimemin.springboottestdemo.spring.user.controller.port.UserReadService;
-import com.tistory.jaimemin.springboottestdemo.spring.user.controller.port.UserUpdateService;
+import com.tistory.jaimemin.springboottestdemo.spring.user.controller.port.UserService;
 import com.tistory.jaimemin.springboottestdemo.spring.user.domain.User;
 import com.tistory.jaimemin.springboottestdemo.spring.user.domain.UserCreate;
 import com.tistory.jaimemin.springboottestdemo.spring.user.domain.UserStatus;
@@ -24,7 +21,7 @@ import lombok.RequiredArgsConstructor;
 @Service
 @Builder
 @RequiredArgsConstructor
-public class UserServiceImpl implements UserCreateService, UserReadService, UserUpdateService, AuthenticationService {
+public class UserServiceImpl implements UserService {
 
 	private final UuidHolder uuidHolder;
 

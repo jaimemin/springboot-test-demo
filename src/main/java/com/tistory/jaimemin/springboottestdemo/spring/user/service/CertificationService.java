@@ -8,8 +8,7 @@ import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
-public class CertificationService
-	implements com.tistory.jaimemin.springboottestdemo.spring.user.controller.port.CertificationService {
+public class CertificationService {
 
 	private final MailSender mailSender;
 

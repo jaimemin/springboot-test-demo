@@ -9,10 +9,7 @@ import com.tistory.jaimemin.springboottestdemo.spring.post.service.PostServiceIm
 import com.tistory.jaimemin.springboottestdemo.spring.post.service.port.PostRepository;
 import com.tistory.jaimemin.springboottestdemo.spring.user.controller.UserController;
 import com.tistory.jaimemin.springboottestdemo.spring.user.controller.UserCreateController;
-import com.tistory.jaimemin.springboottestdemo.spring.user.controller.port.AuthenticationService;
-import com.tistory.jaimemin.springboottestdemo.spring.user.controller.port.UserCreateService;
-import com.tistory.jaimemin.springboottestdemo.spring.user.controller.port.UserReadService;
-import com.tistory.jaimemin.springboottestdemo.spring.user.controller.port.UserUpdateService;
+import com.tistory.jaimemin.springboottestdemo.spring.user.controller.port.UserService;
 import com.tistory.jaimemin.springboottestdemo.spring.user.service.CertificationService;
 import com.tistory.jaimemin.springboottestdemo.spring.user.service.UserServiceImpl;
 import com.tistory.jaimemin.springboottestdemo.spring.user.service.port.MailSender;
@@ -27,14 +24,6 @@ public class TestContainer {
 	public final UserRepository userRepository;
 
 	public final PostRepository postRepository;
-
-	public final UserReadService userReadService;
-
-	public final UserCreateService userCreateService;
-
-	public final UserUpdateService userUpdateService;
-
-	public final AuthenticationService authenticationService;
 
 	public final PostService postService;
 
@@ -59,24 +48,17 @@ public class TestContainer {
 			.userRepository(this.userRepository)
 			.clockHolder(clockHolder)
 			.build();
-		UserServiceImpl userService = UserServiceImpl.builder()
+		UserService userService = UserServiceImpl.builder()
 			.uuidHolder(uuidHolder)
 			.clockHolder(clockHolder)
 			.userRepository(this.userRepository)
 			.certificationService(this.certificationService)
 			.build();
-		this.userReadService = userService;
-		this.userCreateService = userService;
-		this.userUpdateService = userService;
-		this.authenticationService = userService;
 		this.userController = UserController.builder()
-			.userReadService(this.userReadService)
-			.userCreateService(this.userCreateService)
-			.userUpdateService(this.userUpdateService)
-			.authenticationService(this.authenticationService)
+			.userService(userService)
 			.build();
 		this.userCreateController = UserCreateController.builder()
-			.userCreateService(this.userCreateService)
+			.userService(userService)
 			.build();
 		this.postController = PostController.builder()
 			.postService(this.postService)

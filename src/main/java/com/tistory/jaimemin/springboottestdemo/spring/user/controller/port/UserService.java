@@ -13,4 +13,8 @@ public interface UserService {
 	User create(UserCreate userCreate);
 
 	User update(long id, UserUpdate userUpdate);
+
+	void login(long id);
+
+	void verifyEmail(long id, String certificationCode);
 }

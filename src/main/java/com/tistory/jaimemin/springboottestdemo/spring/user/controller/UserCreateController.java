@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.tistory.jaimemin.springboottestdemo.spring.user.controller.port.UserCreateService;
+import com.tistory.jaimemin.springboottestdemo.spring.user.controller.port.UserService;
 import com.tistory.jaimemin.springboottestdemo.spring.user.controller.response.UserResponse;
 import com.tistory.jaimemin.springboottestdemo.spring.user.domain.User;
 import com.tistory.jaimemin.springboottestdemo.spring.user.domain.UserCreate;
@@ -23,11 +23,11 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class UserCreateController {
 
-	private final UserCreateService userCreateService;
+	private final UserService userService;
 
 	@PostMapping
 	public ResponseEntity<UserResponse> createUser(@RequestBody UserCreate userCreate) {
-		User user = userCreateService.create(userCreate);
+		User user = userService.create(userCreate);
 
 		return ResponseEntity
 			.status(HttpStatus.CREATED)
